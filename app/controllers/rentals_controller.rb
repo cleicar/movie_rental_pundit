@@ -1,10 +1,11 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_rental, only: [:show, :edit, :update, :destroy]
 
   # GET /rentals
   # GET /rentals.json
   def index
-    @rentals = Rental.all
+    @rentals = policy_scope(Rental).all
   end
 
   # GET /rentals/1
@@ -70,5 +71,9 @@ class RentalsController < ApplicationController
 
     def rental_params
       params.require(:rental).permit(:date, :movie_id).merge(user_id: current_user.id)
+    end
+
+    def authorize_rental
+      authorize @rentalend
     end
 end

@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_movie
 
   # GET /movies
   # GET /movies.json
@@ -70,5 +71,9 @@ class MoviesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
       params.require(:movie).permit(:name, :kind)
+    end
+
+    def authorize_movie
+      authorize Movie
     end
 end

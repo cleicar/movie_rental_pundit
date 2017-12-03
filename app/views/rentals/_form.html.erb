@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :movie_id %><br>
-    <%= form.select :movie_id, Movie.all.collect {|m| [ m.name, m.id ] }, id: :rental_movie_id %>
+    <%= f.select :movie_id, Movie.all.collect {|m| [ m.name, m.id ] }, id: :rental_movie_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
